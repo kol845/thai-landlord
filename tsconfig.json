@@ -61,6 +61,9 @@
       "@redux": [
         "src/redux"
       ],
+      "@firebase/*": [
+        "src/firebase/*"
+      ],
       "@i18n": [
         "./i18n"
       ]
