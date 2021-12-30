@@ -10,6 +10,8 @@
     "build:analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
+    "@mui/material": "^5.2.6",
+    "@mui/styled-engine-sc": "^5.1.0",
     "@next/bundle-analyzer": "^10.0.5",
     "@reduxjs/toolkit": "^1.6.0",
     "firebase": "^9.6.1",
