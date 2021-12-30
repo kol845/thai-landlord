@@ -6,3 +6,4 @@ export { Cards } from "./cards";
 export { Footer } from "./footer";
 export { Toggle } from "./toggle";
 export { Wrapper } from "./wrapper";
+export { FirebaseAuth } from "./login/FirebaseAuth";

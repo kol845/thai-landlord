@@ -74,7 +74,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/login/index.js", "src/firebase/useUser.js"  ],
   "exclude": [
     "node_modules"
   ]
