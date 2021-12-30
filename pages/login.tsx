@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Wrapper, Header, Main, Footer, Cards, FirebaseAuth  } from "@components";
+import { Wrapper, FirebaseAuth  } from "@components";
 import GlobalStyle from "@styles/globalStyles";
 
 import firebase from '@firebase/initFirebase'
@@ -15,9 +15,7 @@ const Login: React.FC = () => {
   return (
     <Wrapper>
       <GlobalStyle />
-      <Header />
       <FirebaseAuth/>
-      <Footer />
     </Wrapper>
   );
 };

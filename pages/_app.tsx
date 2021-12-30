@@ -5,11 +5,15 @@ import { Provider } from "react-redux";
 import store from "@redux/store";
 import { appWithTranslation } from "@i18n";
 
+import { Layout } from '@components'
+
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <StyledThemeProvider>
       <Provider store={store}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Provider>
     </StyledThemeProvider>
   );
