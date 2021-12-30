@@ -24,6 +24,8 @@ export default function initFirebase() {
                 firebase.performance()
             }
         }
+        const db = firebase.firestore();
+        db.enablePersistence();
         console.log('Firebase was successfully init.')
     }
 }
