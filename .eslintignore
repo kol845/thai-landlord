@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+lib
+.next
+.git
+.expo
+.expo-shared
+web-build
