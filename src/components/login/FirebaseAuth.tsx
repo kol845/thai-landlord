@@ -7,6 +7,14 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import { setUserCookie } from "@firebase/userCookies"
 
 import { IUser } from "@interfaces/firestore/user"
+import { userExists, storeNewUser } from "@firebase/utils"
+
+const saveUser = async user => {
+  const exists: boolean = userExists(user.uid)
+  if (!exists) {
+    storeNewUser(user)
+  }
+}
 
 const firebaseAuthConfig = {
   signInFlow: "popup",
@@ -24,6 +32,7 @@ const firebaseAuthConfig = {
   callbacks: {
     signInSuccessWithAuthResult: ({ user }: { user: IUser }) => {
       setUserCookie(user)
+      saveUser(user)
       return true
     },
   },
