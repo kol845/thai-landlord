@@ -1,37 +1,41 @@
-export * from "./common";
-export * from "./dark";
-export * from "./light";
+export * from "./common"
+export * from "./dark"
+export * from "./light"
 
-import React from "react";
-import { ThemeProvider } from "styled-components";
+import React from "react"
+import { ThemeProvider } from "styled-components"
 
-import { dark } from "./dark";
-import { light } from "./light";
+import { dark } from "./dark"
+import { light } from "./light"
 
 export const ThemeContext = React.createContext({
   theme: "light",
   toggle: () => undefined,
-});
+})
 
 export const useTheme = () => {
-  const { theme, toggle } = React.useContext(ThemeContext);
+  const { theme, toggle } = React.useContext(ThemeContext)
 
-  return { theme: theme === "light" ? light : dark, toggle, themeName: theme };
-};
+  return {
+    theme: theme === "light" ? light : dark,
+    toggle,
+    themeName: theme,
+  }
+}
 
 export const StyledThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = React.useState("light");
+  const [theme, setTheme] = React.useState("light")
 
   const toggle = () => {
-    setTheme((theme) => (theme === "light" ? "dark" : "light"));
-  };
+    setTheme(theme => (theme === "light" ? "dark" : "light"))
+  }
   const values = React.useMemo(
     () => ({
       theme,
       toggle,
     }),
-    [toggle, theme]
-  );
+    [toggle, theme],
+  )
 
   return (
     <ThemeContext.Provider value={values}>
@@ -39,5 +43,5 @@ export const StyledThemeProvider: React.FC = ({ children }) => {
         {children}
       </ThemeProvider>
     </ThemeContext.Provider>
-  );
-};
+  )
+}

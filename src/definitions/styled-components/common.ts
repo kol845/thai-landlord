@@ -1,14 +1,12 @@
-// #region Global Imports
-import { BaseTheme } from "styled-components";
-// #endregion Global Imports
-
-const common: BaseTheme = {
+const common = {
   colors: {
     transparent: "transparent",
     darkGrey: "#282C34",
     blackGrey: "#20232A",
     white: "#FFFFFF",
+    main: "#00247D", // Thailand Blue
+    secondary: "#EF3340", // Thailand Red
   },
-};
+}
 
-export { common };
+export { common }
