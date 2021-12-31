@@ -13,22 +13,28 @@ import AddBusinessIcon from "@mui/icons-material/AddBusiness"
 export interface DialogProps {
   open: boolean
   onClose: () => void
+  navigate: (path: string) => void
 }
 
 export const AddItemDialog = (props: DialogProps) => {
-  const { open, onClose } = props
+  const { open, onClose, navigate } = props
+
+  const _navigate = (path: string) => {
+    onClose()
+    navigate(path)
+  }
 
   return (
     <Dialog onClose={onClose} open={open}>
       <ListStyled>
-        <ListItem button onClick={() => {}}>
+        <ListItem button onClick={() => _navigate("/properties/add")}>
           <ListItemIcon>
             <AddBusinessIcon />
           </ListItemIcon>
           <ListItemText primary={"Add Property"} />
         </ListItem>
         <Divider />
-        <ListItem button onClick={() => {}}>
+        <ListItem button onClick={() => _navigate("/tenants/add")}>
           <ListItemIcon>
             <PersonAddIcon />
           </ListItemIcon>

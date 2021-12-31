@@ -15,11 +15,17 @@ import SettingsIcon from "@mui/icons-material/Settings"
 
 import { AddItemDialog } from "./AddItemDialog"
 
-const navs = ["/", "/properties", "/tenants", "/settings"]
+const getRootPath = path => {
+  const rootPath = path.split("/")[1]
+  return rootPath
+}
 
+const navs = ["", "properties", "tenants", "settings"]
+const disabledDialogNavs = [navs[1], navs[2]]
 export const BottomNav: React.FC = () => {
   const router = useRouter()
   const [value, setValue] = useState("home")
+  const [disabledDialog, setDisabledDialog] = useState(false)
   const [openAddItemDialog, setOpenAddItemDialog] = React.useState(false)
 
   const navigate = (nextPath: string) => {
@@ -27,15 +33,34 @@ export const BottomNav: React.FC = () => {
   }
 
   useEffect(() => {
-    if (!navs.includes(router.asPath)) setValue("")
+    const rootPath = getRootPath(router.asPath)
+
+    if (!navs.includes(rootPath)) setValue("")
     else {
-      let value = router.asPath
-      if (router.asPath === "/") {
-        value = "/home"
+      let value = rootPath
+      if (rootPath === "") {
+        value = "home"
       }
-      setValue(value.substring(1))
+      setValue(value)
+    }
+    setDisabledDialog(false)
+    if (disabledDialogNavs.includes(rootPath)) {
+      setDisabledDialog(true)
     }
   }, [router.asPath])
+
+  const handleAddButtonClick = () => {
+    const rootPath = getRootPath(router.asPath)
+    if (disabledDialog) {
+      if (rootPath === "properties") {
+        navigate("/properties/add")
+      } else if (rootPath === "tenants") {
+        navigate("/tenants/add")
+      }
+    } else {
+      setOpenAddItemDialog(true)
+    }
+  }
 
   return (
     <Paper
@@ -69,7 +94,7 @@ export const BottomNav: React.FC = () => {
             value="add"
             label="Add"
             icon={<AddIcon style={{ marginTop: "5px" }} />}
-            onClick={() => setOpenAddItemDialog(true)}
+            onClick={handleAddButtonClick}
           />
         </AddNavButtonContainer>
         <BottomNavigationActionStyled
@@ -88,6 +113,7 @@ export const BottomNav: React.FC = () => {
         onClose={() => {
           setOpenAddItemDialog(false)
         }}
+        navigate={navigate}
       />
     </Paper>
   )
