@@ -9,6 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import List from "@mui/material/List"
 import Divider from "@mui/material/Divider"
 import IconButton from "@mui/material/IconButton"
+import Typography from "@mui/material/Typography"
 
 import MenuIcon from "@mui/icons-material/Menu"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
@@ -21,7 +22,7 @@ import LoginIcon from "@mui/icons-material/Login"
 import { ButtonContainer } from "./styled"
 import { DRAWER_WIDTH } from "@definitions/constants"
 
-import { userIsLoggedIn, signOut } from "@firebase/utils"
+import { signOut, getUser } from "@firebase/utils"
 
 const Main = styled("div", { shouldForwardProp: prop => prop !== "open" })<{
   open?: boolean
@@ -54,6 +55,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function PersistentDrawerLeft({ children }: { children: any }) {
   const theme = useTheme()
   const router = useRouter()
+  const user = getUser()
   const [open, setOpen] = useState(false)
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -66,7 +68,6 @@ export default function PersistentDrawerLeft({ children }: { children: any }) {
   const navigate = (nextPath: string) => {
     router.push(nextPath)
   }
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -104,9 +105,12 @@ export default function PersistentDrawerLeft({ children }: { children: any }) {
             )}
           </IconButton>
         </DrawerHeader>
-        <Divider />
+        {user?.displayName && (
+          <Typography>Hello {user.displayName?.split(" ")[0]} 👋</Typography>
+        )}
         <List>
-          {userIsLoggedIn() ? (
+          <Divider />
+          {user ? (
             <ListItem
               button
               onClick={() => {

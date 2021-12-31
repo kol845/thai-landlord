@@ -3,8 +3,12 @@ import { getAuth } from "firebase/auth"
 
 export const userIsLoggedIn = () => {
   const [user] = useAuthState(getAuth())
-
   return user ? true : false
+}
+
+export const getUser = () => {
+  const [user] = useAuthState(getAuth())
+  return user
 }
 
 export const signOut = () => {
