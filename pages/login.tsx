@@ -1,22 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react"
 
-import { Wrapper, FirebaseAuth  } from "@components";
-import GlobalStyle from "@styles/globalStyles";
+import { Wrapper, FirebaseAuth } from "@components"
+import GlobalStyle from "@styles/globalStyles"
 
-import firebase from '@firebase/initFirebase'
-firebase()
-
-// import firebaseWrite from '@firebase/scripts/write_dummy'
-// firebaseWrite()
-// import firebaseRead from '@firebase/scripts/read_dummy'
-// firebaseRead()
+import { useRouter } from "next/router"
 
 const Login: React.FC = () => {
+  const router = useRouter()
+
   return (
     <Wrapper>
       <GlobalStyle />
-      <FirebaseAuth/>
+      <FirebaseAuth />
     </Wrapper>
-  );
-};
-export default Login;
+  )
+}
+export default Login

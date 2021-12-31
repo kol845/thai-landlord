@@ -25,6 +25,13 @@ export const BottomNav: React.FC = () => {
 
   useEffect(() => {
     if (!navs.includes(router.asPath)) setValue("")
+    else {
+      let value = router.asPath
+      if (router.asPath === "/") {
+        value = "/home"
+      }
+      setValue(value.substring(1))
+    }
   }, [router.asPath])
 
   return (
@@ -35,7 +42,6 @@ export const BottomNav: React.FC = () => {
       <BottomNavigation
         value={value}
         onChange={(event, newValue) => {
-          setValue(newValue)
           if (newValue !== "add") {
             if (newValue === "home") {
               // Ensure that 'home' is translated to root path '/'
