@@ -13,11 +13,14 @@ import AddIcon from "@mui/icons-material/Add"
 import PeopleIcon from "@mui/icons-material/People"
 import SettingsIcon from "@mui/icons-material/Settings"
 
+import { AddItemDialog } from "./AddItemDialog"
+
 const navs = ["/", "/properties", "/tenants", "/settings"]
 
 export const BottomNav: React.FC = () => {
   const router = useRouter()
   const [value, setValue] = useState("home")
+  const [openAddItemDialog, setOpenAddItemDialog] = React.useState(false)
 
   const navigate = (nextPath: string) => {
     router.push(nextPath)
@@ -62,7 +65,12 @@ export const BottomNav: React.FC = () => {
           icon={<ApartmentIcon />}
         />
         <AddNavButtonContainer>
-          <AddNavButton value="add" label="Add" icon={<AddIcon />} />
+          <AddNavButton
+            value="add"
+            label="Add"
+            icon={<AddIcon style={{ marginTop: "5px" }} />}
+            onClick={() => setOpenAddItemDialog(true)}
+          />
         </AddNavButtonContainer>
         <BottomNavigationActionStyled
           value="tenants"
@@ -75,6 +83,12 @@ export const BottomNav: React.FC = () => {
           icon={<SettingsIcon />}
         />
       </BottomNavigation>
+      <AddItemDialog
+        open={openAddItemDialog}
+        onClose={() => {
+          setOpenAddItemDialog(false)
+        }}
+      />
     </Paper>
   )
 }
