@@ -61,11 +61,9 @@ export const BottomNav: React.FC = () => {
           label="Properties"
           icon={<ApartmentIcon />}
         />
-        <BottomNavigationActionStyled
-          value="add"
-          label="Add"
-          icon={<AddIcon />}
-        />
+        <AddNavButtonContainer>
+          <AddNavButton value="add" label="Add" icon={<AddIcon />} />
+        </AddNavButtonContainer>
         <BottomNavigationActionStyled
           value="tenants"
           label="Tenants"
@@ -83,4 +81,20 @@ export const BottomNav: React.FC = () => {
 
 const BottomNavigationActionStyled = styled(BottomNavigationAction)`
   min-width: 0px;
+`
+const AddNavButtonContainer = styled.div`
+  padding: 6px;
+  background-color: ${({ theme }) => theme.colors.white};
+  margin-bottom: 15px;
+  margin-top: -15px;
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  display: flex;
+`
+
+const AddNavButton = styled(BottomNavigationActionStyled)`
+  background-color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.white};
+  border-radius: 50%;
 `
