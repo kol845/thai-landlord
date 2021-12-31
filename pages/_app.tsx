@@ -1,13 +1,16 @@
-import React from "react";
-import { AppProps } from "next/app";
-import { StyledThemeProvider } from "@definitions/styled-components";
-import { Provider } from "react-redux";
-import store from "@redux/store";
-import { appWithTranslation } from "@i18n";
+import React from "react"
+import { AppProps } from "next/app"
+import { StyledThemeProvider } from "@definitions/styled-components"
+import { Provider } from "react-redux"
+import store from "@redux/store"
+import { appWithTranslation } from "@i18n"
 
-import { Layout } from '@components'
+import { Layout } from "@components"
+
+import initFirebase from "@firebase/initFirebase"
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  initFirebase()
   return (
     <StyledThemeProvider>
       <Provider store={store}>
@@ -16,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         </Layout>
       </Provider>
     </StyledThemeProvider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

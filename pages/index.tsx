@@ -1,22 +1,14 @@
-import React from "react";
+import React from "react"
 
-import { Wrapper, Main, Cards } from "@components";
-import GlobalStyle from "@styles/globalStyles";
-
-// import firebase from '@firebase/initFirebase'
-// firebase()
-
-// import firebaseWrite from '@firebase/scripts/write_dummy'
-// firebaseWrite()
-// import firebaseRead from '@firebase/scripts/read_dummy'
-// firebaseRead()
+import { Wrapper, Main, Cards } from "@components"
+import GlobalStyle from "@styles/globalStyles"
 
 const Home: React.FC = () => {
   return (
     <Wrapper>
       <GlobalStyle />
-      <Main />
+      <h1>Dashboard page</h1>
     </Wrapper>
-  );
-};
-export default Home;
+  )
+}
+export default Home

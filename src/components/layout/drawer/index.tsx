@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import { styled, useTheme } from "@mui/material/styles"
+
+import { useRouter } from "next/router"
 
 import Box from "@mui/material/Box"
 import Drawer from "@mui/material/Drawer"
@@ -18,6 +20,8 @@ import LoginIcon from "@mui/icons-material/Login"
 
 import { ButtonContainer } from "./styled"
 import { DRAWER_WIDTH } from "@definitions/constants"
+
+import { userIsLoggedIn, signOut } from "@firebase/utils"
 
 const Main = styled("div", { shouldForwardProp: prop => prop !== "open" })<{
   open?: boolean
@@ -49,14 +53,18 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function PersistentDrawerLeft({ children }: { children: any }) {
   const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
-
+  const router = useRouter()
+  const [open, setOpen] = useState(false)
   const handleDrawerOpen = () => {
     setOpen(true)
   }
 
   const handleDrawerClose = () => {
     setOpen(false)
+  }
+
+  const navigate = (nextPath: string) => {
+    router.push(nextPath)
   }
 
   return (
@@ -98,12 +106,34 @@ export default function PersistentDrawerLeft({ children }: { children: any }) {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <LoginIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Sign in"} />
-          </ListItem>
+          {userIsLoggedIn() ? (
+            <ListItem
+              button
+              onClick={() => {
+                signOut()
+                navigate("/")
+                handleDrawerClose()
+              }}
+            >
+              <ListItemIcon>
+                <LoginIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Sign out"} />
+            </ListItem>
+          ) : (
+            <ListItem
+              button
+              onClick={() => {
+                navigate("/login")
+                handleDrawerClose()
+              }}
+            >
+              <ListItemIcon>
+                <LoginIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Sign in"} />
+            </ListItem>
+          )}
         </List>
       </Drawer>
       <Main open={open}>{children}</Main>

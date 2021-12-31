@@ -13,6 +13,8 @@ import AddIcon from "@mui/icons-material/Add"
 import PeopleIcon from "@mui/icons-material/People"
 import SettingsIcon from "@mui/icons-material/Settings"
 
+const navs = ["/", "/properties", "/tenants", "/settings"]
+
 export const BottomNav: React.FC = () => {
   const router = useRouter()
   const [value, setValue] = useState("home")
@@ -20,6 +22,10 @@ export const BottomNav: React.FC = () => {
   const navigate = (nextPath: string) => {
     router.push(nextPath)
   }
+
+  useEffect(() => {
+    if (!navs.includes(router.asPath)) setValue("")
+  }, [router.asPath])
 
   return (
     <Paper
