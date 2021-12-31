@@ -4,7 +4,7 @@ const common = {
     darkGrey: "#282C34",
     blackGrey: "#20232A",
     white: "#FFFFFF",
-    main: "#00247D", // Thailand Blue
+    primary: "#00247D", // Thailand Blue
     secondary: "#EF3340", // Thailand Red
   },
 }

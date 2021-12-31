@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 import { useRouter } from "next/router"
 
@@ -14,6 +14,8 @@ import PeopleIcon from "@mui/icons-material/People"
 import SettingsIcon from "@mui/icons-material/Settings"
 
 import { AddItemDialog } from "./AddItemDialog"
+
+import { common } from "@definitions/styled-components/common"
 
 const getRootPath = path => {
   const rootPath = path.split("/")[1]
@@ -122,9 +124,9 @@ export const BottomNav: React.FC = () => {
 const BottomNavigationActionStyled = styled(BottomNavigationAction)`
   min-width: 0px;
 `
-const AddNavButtonContainer = styled.div`
+const AddNavButtonContainer = styled("div")`
   padding: 6px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${common.colors.white};
   margin-bottom: 15px;
   margin-top: -15px;
   border-radius: 50%;
@@ -134,7 +136,7 @@ const AddNavButtonContainer = styled.div`
 `
 
 const AddNavButton = styled(BottomNavigationActionStyled)`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.white};
+  background-color: ${common.colors.secondary};
+  color: ${common.colors.white};
   border-radius: 50%;
 `
